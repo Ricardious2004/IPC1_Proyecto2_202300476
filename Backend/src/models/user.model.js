@@ -1,8 +1,4 @@
-
-
-
-
-export class User {
+class User {
     constructor(carnet, nombres, apellidos, genero, facultad, carrera, correo, contrasena) {
         this.carnet = carnet;
         this.nombres = nombres;
@@ -15,4 +11,4 @@ export class User {
     }
 }
 
-
+export {User}

@@ -1,26 +1,8 @@
-import { existsSync, readFileSync, writeFileSync } from 'fs';
-import { resolve } from 'path';
+
 import bcrypt from 'bcryptjs';
 import {createAccessToken} from '../libs/jwt.js';
 import { User } from '../models/user.model.js'; // Importa la clase User desde user.model.js
-
-const FILENAME = resolve('Users.json');
-
-let users = [];
-
-// Verificar y crear archivo si no existe
-if (!existsSync(FILENAME)) {
-    writeFileSync(FILENAME, JSON.stringify(users));
-} else {
-    // Si el archivo existe, cargar los datos
-    const fileData = readFileSync(FILENAME, 'utf8');
-    users = JSON.parse(fileData);
-}
-
-// Función que ayuda a actualizar el contenido del archivo json
-function updateDataFile() {
-    writeFileSync(FILENAME, JSON.stringify(users));
-}
+import { users, updateDataFile } from '../data/userData.js'; // Importa users y updateDataFile desde userData
 
 
 
