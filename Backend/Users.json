@@ -1,1 +1,79 @@
-[{"carnet":"202300477","nombres":"Alex Ricardo","apellidos":"Castañeda Rodríguez","genero":"Masculino","facultad":"Ingeniería","carrera":"Ingeniería en Ciencias y Sistemas","correo":"3049321750116@ingenieria.usac.edu.gt","contrasena":"$2a$10$.x0Cv9n96Mn4UvLYA4vG9.bTMynLdtWIGm8kSHLV7oxfTcUrv2YZO"}]
+[
+  {
+    "carnet": "202300476",
+    "nombres": "Alex Ricardo",
+    "apellidos": "Castañeda Rodríguez",
+    "genero": "Masculino",
+    "facultad": "Ingeniería",
+    "carrera": "Ingeniería en Ciencias y Sistemas",
+    "correo": "3049321750116@ingenieria.usac.edu.gt",
+    "contrasena": "$2a$10$CdHB8dVECrQ7jI5UJOF/ge3gKClZcv.1EZUgNySGU5dIA9R1f9akG",
+    "isHashedPassword": true
+  },
+  {
+    "carnet": "202300478",
+    "nombres": "Ana María",
+    "apellidos": "García López",
+    "genero": "Femenino",
+    "facultad": "Ingeniería",
+    "carrera": "Ingeniería en Sistemas",
+    "correo": "3049321750117@ingenieria.usac.edu.gt",
+    "contrasena": "$2a$10$70zvuqrjsFn0L8ZdrFaZ.utiCshUQnPZ.0vM7g0qbLyMJ0cuIk6Gy",
+    "isHashedPassword": true
+  },
+  {
+    "carnet": "202300479",
+    "nombres": "Carlos Alberto",
+    "apellidos": "Pérez Martínez",
+    "genero": "Masculino",
+    "facultad": "Ingeniería",
+    "carrera": "Ingeniería Química",
+    "correo": "3049321750118@ingenieria.usac.edu.gt",
+    "contrasena": "$2a$10$oyrF0r20saiX4uXzmKP.fewj.YHhJ/RNc5It7fmw4NIVeo3rIHd5i",
+    "isHashedPassword": true
+  },
+  {
+    "carnet": "202300480",
+    "nombres": "Luisa Fernanda",
+    "apellidos": "Hernández Pérez",
+    "genero": "Femenino",
+    "facultad": "Ingeniería",
+    "carrera": "Ingeniería Industrial",
+    "correo": "3049321750119@ingenieria.usac.edu.gt",
+    "contrasena": "$2a$10$gmEjWO73ZlVMIH.NEPBlseplkEXToWya8QwVtHkoe.5BeTV7/IdFe",
+    "isHashedPassword": true
+  },
+  {
+    "carnet": "202300481",
+    "nombres": "Pedro José",
+    "apellidos": "Gómez Sánchez",
+    "genero": "Masculino",
+    "facultad": "Ingeniería",
+    "carrera": "Ingeniería Civil",
+    "correo": "3049321750120@ingenieria.usac.edu.gt",
+    "contrasena": "$2a$10$26dvWhXF.I5LjzEcI0c9f.SfzdSTP6ko/l9LGQ.grdhAewEvKSuHq",
+    "isHashedPassword": true
+  },
+  {
+    "carnet": "20230047787",
+    "nombres": "Alex Ricardo",
+    "apellidos": "Castañeda Rodríguez",
+    "genero": "Masculino",
+    "facultad": "Ingeniería",
+    "carrera": "Ingeniería en Ciencias y Sistemas",
+    "correo": "3049321750116@ingenieria.usac.edu.gt",
+    "contrasena": "$2a$10$0rbydCtOGf7NDH.y09i2Te5SZZQ0CFPKseR.PsayszPcHydMnxTLy",
+    "isHashedPassword": true
+  },
+  {
+    "carnet": "202300477787",
+    "nombres": "Alex Ricardo",
+    "apellidos": "Castañeda Rodríguez",
+    "genero": "Masculino",
+    "facultad": "Ingeniería",
+    "carrera": "Ingeniería en Ciencias y Sistemas",
+    "correo": "3049321750116@ingenieria.usac.edu.gt",
+    "contrasena": "$2a$10$4B8UAfERBE2JYC49di7XUuhXOlY7rK8V5olZGv6xT0ModXq0.T1pm",
+    "isHashedPassword": true
+  }
+]
