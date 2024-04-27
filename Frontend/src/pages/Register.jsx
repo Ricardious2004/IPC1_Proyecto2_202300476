@@ -1,11 +1,14 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BiUser } from "react-icons/bi";
 import Select from "react-select";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { useForm, Controller } from "react-hook-form";
 import { registerRequest } from '../api/auth.js';
+import { useAuth } from '../context/AuthContext.jsx';
+
+
 
 const genderOptions = [
   { value: 'male', label: 'Male' },
@@ -55,26 +58,38 @@ const selectStyles = {
 
 
 function RegisterPage() {
+  const { 
+    register, 
+    handleSubmit, 
+    control, 
+    watch, 
+    formState:{ errors} 
+  } = useForm();
+  const { signup, isAuthenticated, errors: registerErrors } = useAuth();
+  const navigate = useNavigate();
 
-  const { register, handleSubmit, control, watch } = useForm();
 
+  useEffect(() => {
+    if (isAuthenticated) navigate('/profile');
+    }, [isAuthenticated]); 
+
+  const onSubmit = handleSubmit(async (values) => {
+    signup(values);
+  });
 
   return (
 
     <div>
       <div className="bg-slate-800 border border-slate-400 rounded-md p-20 w-full shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-30 relative">
+       {
+        registerErrors.map((error, index) => (
+          <div key={index} className="bg-red-500 p-2 text-white rounded-md">
+            {error}
+            </div>
+        ))
+       }
         <h1 className="text-4xl text-white font-bold text-center mb-6">Register</h1>
-        <form onSubmit={handleSubmit(async (values) => {
-          const { confirmPassword, genero, ...rest } = values;
-
-          // Solo toma el valor de 'genero'
-          const userData = { ...rest, genero: genero.label };
-
-          console.log(userData);
-          const res = await registerRequest(userData);
-          console.log(res);
-        })}
-        >
+        <form onSubmit={onSubmit}>
           <div className="relative">
 
             <input
@@ -83,8 +98,12 @@ function RegisterPage() {
               placeholder=""
               {...register('carnet', { required: true })}
             />
+
             <label htmlFor='usacId' className="absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">USAC Code / ID</label>
-            <BiUser className="absolute text-white top-4 right-4" />
+            <BiUser className="absolute text-white top-4 right-4" />           
+            {errors.carnet && (
+            <p className="text-red-500">Username is required</p>
+            )}
           </div>
 
           <div className="flex space-x-4 mt-4">
@@ -96,6 +115,9 @@ function RegisterPage() {
                 {...register('nombres', { required: true })}
               />
               <label htmlFor='firstName' className="absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First Names</label>
+              {errors.carnet && (
+            <p className="text-red-500">First name is required</p>
+            )}
             </div>
             <div className="relative w-1/2">
               <input
@@ -105,6 +127,9 @@ function RegisterPage() {
                 {...register('apellidos', { required: true })}
               />
               <label htmlFor='lastName' className="absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last Names</label>
+              {errors.carnet && (
+            <p className="text-red-500">Last name is required</p>
+            )}
             </div>
           </div>
 
@@ -127,6 +152,9 @@ function RegisterPage() {
               />
 
               <label htmlFor='gender' className="absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Gender</label>
+              {errors.carnet && (
+            <p className="text-red-500">Gender is required</p>
+            )}
             </div>
             <div className="relative w-1/2">
               <input
@@ -136,6 +164,9 @@ function RegisterPage() {
                 {...register('correo', { required: true })}
               />
               <label htmlFor='email' className="absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email Address</label>
+              {errors.carnet && (
+            <p className="text-red-500">Email is required</p>
+            )}
             </div>
           </div>
 
@@ -150,6 +181,9 @@ function RegisterPage() {
                 {...register('facultad', { required: true })}
               />
               <label htmlFor='firstName' className="absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Faculty</label>
+              {errors.carnet && (
+            <p className="text-red-500">Facultad is required</p>
+            )}
             </div>
 
             <div className="relative w-1/2">
@@ -160,6 +194,9 @@ function RegisterPage() {
                 {...register('carrera', { required: true })}
               />
               <label htmlFor='firstName' className="absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Major</label>
+              {errors.carnet && (
+            <p className="text-red-500">Username is required</p>
+            )}
             </div>
           </div>
 
@@ -173,6 +210,9 @@ function RegisterPage() {
               />
               <label htmlFor='firstName' className="absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
               <RiLockPasswordLine className="absolute text-white top-4 right-1" />
+              {errors.carnet && (
+            <p className="text-red-500">Password is required</p>
+            )}
             </div>
             <div className="relative w-1/2">
               <input
@@ -183,13 +223,16 @@ function RegisterPage() {
                   required: true,
                   validate: (val) => {
                     if (watch('contrasena') !== val) {
-                      return "Your passwords do not match";
+                      return 'Passwords do not match';
                     }
                   },
                 })}
               />
               <label htmlFor='lastName' className="absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm Password</label>
               <RiLockPasswordLine className="absolute text-white top-4 right-1" />
+              {errors.carnet && (
+            <p className="text-red-500">Password is required</p>
+            )}
             </div>
           </div>
 

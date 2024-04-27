@@ -1,5 +1,5 @@
 class User {
-    constructor(carnet, nombres, apellidos, genero, facultad, carrera, correo, contrasena) {
+    constructor(carnet, nombres, apellidos, genero, facultad, carrera, correo, contrasena, role) {
         this.carnet = carnet;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -8,6 +8,7 @@ class User {
         this.carrera = carrera;
         this.correo = correo;
         this.contrasena = contrasena;
+        this.role = role;
     }
 }
 

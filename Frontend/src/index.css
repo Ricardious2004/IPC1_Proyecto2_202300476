@@ -4,7 +4,11 @@
 @tailwind utilities;
 
 body {
-    background: #202020;
-    color: #fff;
+    background: #ffffff;
+    color: #000000;
+
+    ::-webkit-scrollbar{
+        display: none;
+    }
 
 }

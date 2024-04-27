@@ -24,18 +24,30 @@ export const registerSchema = z.object({
   }).email({
     message: 'Invalid email format',
   }),
+
   contrasena: z.string({
     required_error: 'Password is required',
   }).min(8, {
     message: 'Password must be at least 8 characters long',
-}).refine(value => (
-    /[A-Z]/.test(value) && 
-    /[a-z]/.test(value) && 
-    /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value) &&
-    value.length > 0
-), {
-    message: 'Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 special character',
-}),
+  }).refine(value => (
+    /[A-Z]/.test(value)
+  ), {
+    message: 'Password must contain at least 1 uppercase letter',
+  }).refine(value => (
+    /[a-z]/.test(value)
+  ), {
+    message: 'Password must contain at least 1 lowercase letter',
+  }).refine(value => (
+    /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value)
+  ), {
+    message: 'Password must contain at least 1 special character',
+  }).refine(value => (
+    !/[^A-Za-z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(value)
+  ), {
+    message: 'Password contains an invalid character',
+  }),
+
+
 }); 
 
 export const loginSchema = z.object({
@@ -44,14 +56,5 @@ export const loginSchema = z.object({
   }),
   contrasena: z.string({
     required_error : 'Password is required',
-  }).min(8, {
-    message: 'Password must be at least 8 characters long',
-}).refine(value => (
-    /[A-Z]/.test(value) && 
-    /[a-z]/.test(value) && 
-    /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(value) &&
-    value.length > 0
-), {
-    message: 'Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 special character'
-}),
+  })
 });
