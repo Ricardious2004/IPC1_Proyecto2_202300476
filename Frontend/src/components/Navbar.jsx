@@ -10,8 +10,13 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { useAuth } from '../context/AuthContext';
 
 function Navbar() {
+
+  const { isAuthenticated, logout, user } = useAuth();
+
+
   return (
     <nav className="flex flex-col sm:flex-row items-center justify-between px-4 py-2 h-16 border-b border-themify-border bg-white sticky top-0 bg-themify-bg text-themify-textColor z-50">
       <div className="flex items-center gap-6">
@@ -44,7 +49,7 @@ function Navbar() {
             alt=""
             className="w-8 h-8 rounded-full object-cover"
           />
-          <span className="text-[20px] font-bold text-blue-900">Ricardious</span>
+          <span  onClick={() => logout()} className="text-[20px] font-bold text-blue-900">Logout</span>
         </div>
       </div>
     </nav>

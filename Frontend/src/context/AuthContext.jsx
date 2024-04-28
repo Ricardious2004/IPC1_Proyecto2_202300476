@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
 
-
     const signup = async (user) => {
         try {
             const { confirmPassword, genero, ...rest } = user;
@@ -36,6 +35,11 @@ export const AuthProvider = ({ children }) => {
             setErrors(error.response.data);
         }
     }
+
+      // Guardamos el usuario en el localStorage cuando cambia
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
 
     const signin = async (user) => {
         try {
@@ -92,13 +96,18 @@ export const AuthProvider = ({ children }) => {
         checkLogin();
     }, []);
 
-
+    const logout = () => {
+        Cookies.remove("token");
+        setUser(null);
+        setIsAuthenticated(false);
+      };
 
     return (
         <AuthContext.Provider value={{
             signup,
             signin,
             loading,
+            logout,
             user,
             isAuthenticated,
             errors

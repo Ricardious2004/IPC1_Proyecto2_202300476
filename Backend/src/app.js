@@ -7,6 +7,7 @@ import postsRoutes from './routes/posts.routes.js';
 import usersRoutes from './routes/users.routes.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import multer from 'multer';
 
 const app = express();
 
@@ -18,6 +19,17 @@ app.use(cors({
 // Cookie parser
 app.use(cookieParser());
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, '../Frontend/public/upload')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + file.originalname)
+    }
+  })
+  
+  const upload = multer({ storage: storage })
+
 // Middlewares
 app.use(morgan('dev'));
 
@@ -25,6 +37,10 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // Routes
+app.post("/api/upload", upload.single("file"), (req, res) => {
+    const file = req.file;
+    res.status(200).json(file.filename);
+});
 app.use("/api", authRoutes);
 app.use("/api", commentsRoutes);
 app.use("/api", likesRoutes);

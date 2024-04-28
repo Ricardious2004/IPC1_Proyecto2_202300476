@@ -99,5 +99,16 @@
     "correo": "2024@gmail.com",
     "contrasena": "$2a$10$wWWIFkHrPYwIRpk/hJ7Hgu0TUwJhukJjtLfXSd6SCGCu5W9Ln8C9i",
     "isHashedPassword": true
+  },
+  {
+    "carnet": "2",
+    "nombres": "Alex Ricardo",
+    "apellidos": "Castañeda Rodríguez",
+    "genero": "Male",
+    "facultad": "Ingeniería ",
+    "carrera": "Ciencias y Sistemas",
+    "correo": "castaneda.systems@gmail.com",
+    "contrasena": "$2a$10$G5nSbLbwVQnIzF6FylW37uowLZFb5w3i.zfyanU2OxD.lp.9GdNU6",
+    "isHashedPassword": true
   }
 ]

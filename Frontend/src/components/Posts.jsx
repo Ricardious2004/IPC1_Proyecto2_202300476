@@ -1,35 +1,30 @@
 import Post from "./Post";
+import React, { useState } from 'react';
+import { useEffect } from "react";
+import { getPostsRequest } from "../api/auth";
+import instance from "../api/axios";
+import { useQuery } from "@tanstack/react-query";
 
 function Posts(){
-  //TEMPORARY
-  const posts = [
-    {
-      id: 1,
-      name: "Ricardious",
-      userId: 1,
-      profilePic:
-        "https://seojunyoo.gallerycdn.vsassets.io/extensions/seojunyoo/react-component-preview/1.0.5/1645227049614/Microsoft.VisualStudio.Services.Icons.Default",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-      img: "https://e1.pxfuel.com/desktop-wallpaper/556/915/desktop-wallpaper-how-to-install-reactjs-frontend.jpg",
-    },
-    {
-      id: 2,
-      name: "Ricardious",
-      userId: 2,
-      profilePic:
-        "https://seojunyoo.gallerycdn.vsassets.io/extensions/seojunyoo/react-component-preview/1.0.5/1645227049614/Microsoft.VisualStudio.Services.Icons.Default",
-      desc: "Tenetur iste voluptates dolorem rem commodi voluptate pariatur, voluptatum, laboriosam consequatur enim nostrum cumque! Maiores a nam non adipisci minima modi tempore.",
-    },
-  ];
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["posts"],
+    queryFn: () => instance.get("/posts").then((res) => {
+      console.log(res.data); // Log the data
+      return res.data; // Return the data
+    })
+  });
 
   return (
     <div className="flex flex-col gap-8">
-      {posts.map(post => (
-        <Post post={post} key={post.id} />
-      ))}
+      {error // Si hay un error, mostramos un mensaje de error
+        ? "Something went wrong!"
+        : isLoading // Si la solicitud está cargando, mostramos un mensaje de carga
+        ? "loading"
+        : Array.isArray(data) ? data.map((post) => <Post post={post} key={post.id} />) : null // Si la solicitud ha terminado y no hay errores, mapeamos los datos a componentes Post
+      }
     </div>
   );
 };
 
 export default Posts;
-
